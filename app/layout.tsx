@@ -5,6 +5,9 @@ export const metadata = {
   title: "Siddhant Mishra | Full stack Web and app developer",
   description:
     "Personal portfolio of Siddhant Mishra — Flutter developer, app creator, and tech enthusiast. View projects, experience, and contact details.",
+   icons: {
+    icon: "/favicon.ico",
+  },
   keywords:
     "Siddhant Mishra, Flutter Developer, Mobile App Developer, Portfolio, Resume, Projects, Speed Maths App, Siddhant Mishra Portfolio",
   authors: [{ name: "Siddhant Mishra" }],
