@@ -93,14 +93,18 @@ export default function Home() {
 
         {/* 💬 Main intro text */}
         <div className="relative bg-[#fffef9] border-2 border-black rounded-2xl shadow-[5px_5px_0_#000] px-6 py-8 sm:px-8 sm:py-10 handdrawn hover:shadow-[7px_7px_0_#000] transition-all duration-300">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-2 leading-tight">
             Hi, I’m <span className="underline decoration-4 decoration-yellow-400">Siddhant Mishra</span> 👋
           </h1>
 
-          <p className="text-base sm:text-lg text-gray-700 max-w-xl mx-auto mb-6">
-            A Flutter and Web Developer passionate about building fast, minimal, and elegant apps —
-            with a touch of creativity ✨
-          </p>
+          <h2 className="text-base sm:text-lg font-bold text-gray-700 max-w-xl mx-auto mb-3">
+           Flutter App Developer | Full-Stack Web Developer
+           </h2>
+            <h2 className="text-base sm:text-lg text-gray-700 max-w-xl mx-auto mb-6">
+          I’m an independent and creative developer specializing in Flutter app development and full-stack web development (MERN & Next.js). I enjoy designing and developing apps from scratch — handling everything from UI/UX to backend integration. ✨
+           </h2>
+          
+          
 
           {/* 📎 Buttons */}
           <div className="flex flex-wrap justify-center gap-3 mt-2">
