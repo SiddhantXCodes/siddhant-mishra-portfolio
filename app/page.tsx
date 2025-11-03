@@ -1,65 +1,217 @@
-import Image from "next/image";
+"use client"
+
+import Navbar from "./components/Navbar";
+import Card from "./components/ProjectCard";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import AboutSection from "./components/AboutSection";
+import ContactSection from "./components/ContactSection";
+import Footer from "./components/Footer";
 
 export default function Home() {
+ const allProjects = [
+    {
+      title: "Speed Maths App",
+      desc: "A Flutter app to improve calculation speed and accuracy.",
+      img: ["/projects/project1.png", "/projects/project2.webp", ],
+      github: "https://github.com/yourusername/speedmaths",
+      live: "https://speedmaths.vercel.app",
+      category: ["Android", "High-level"],
+      techStack: ["Flutter", "Dart", "Firebase"],
+    },
+    {
+      title: "Vocabulary Builder",
+      desc: "Learn new words daily from the entire dictionary with gamified progress.",
+      img: ["/projects/project1.png", "/projects/project1.png", "/projects/project1.png"],
+      github: "https://github.com/yourusername/vocab-builder",
+      live: "https://vocab-builder.vercel.app",
+      category: ["Web", "Intermediate"],
+      techStack: ["React", "TypeScript", "TailwindCSS"],
+    },
+    {
+      title: "Study Timer System",
+      desc: "Smart study timer like YPT app — stay focused and track your sessions.",
+    img: ["/projects/project1.png", "/projects/project1.png", "/projects/project1.png"],
+      github: "https://github.com/yourusername/study-timer",
+      live: "https://study-timer.vercel.app",
+      category: ["Android", "Basic"],
+      techStack: ["Flutter", "Firebase", "Provider"],
+    },
+    {
+      title: "Portfolio Website",
+      desc: "A handcrafted portfolio website with animations and unique design.",
+     img: ["/projects/project1.png", "/projects/project1.png", "/projects/project1.png"],
+      github: "https://github.com/yourusername/portfolio",
+      live: "https://portfolio.vercel.app",
+      category: ["Web", "High-level"],
+    },
+    {
+      title: "AI Chat App",
+      desc: "An experimental chat app powered by AI using Node.js and OpenAI API.",
+      img: "/projects/project1.png",
+      github: "https://github.com/yourusername/aichat",
+      live: "https://aichat.vercel.app",
+      category: ["AI/ML", "High-level", "Web"],
+    },
+  ];
+
+  const categories = ["All", "Web", "Android", "AI/ML", "High-level", "Intermediate", "Basic"];
+
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProjects =
+    activeCategory === "All"
+      ? allProjects
+      : allProjects.filter((p) => p.category.includes(activeCategory));
+
+
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-[#fefcf7] text-black relative">
+      <Navbar />
+
+      {/* Hero Section */}
+      <section 
+        className="relative flex flex-col items-center justify-center text-center min-h-[90vh] pt-6 pb-10 overflow-hidden">
+        {/* 🎨 Soft watercolor-like blobs */}
+        <div className="absolute inset-0 -z-10 opacity-40">
+          <div className="absolute w-60 h-60 bg-yellow-100 rounded-full blur-3xl top-10 left-10 animate-pulse"></div>
+          <div className="absolute w-72 h-72 bg-pink-100 rounded-full blur-3xl bottom-10 right-10 animate-pulse"></div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        {/* 🖼️ Polaroid-style photo */}
+        <div className="relative mb-4">
+          <div className="bg-[#fffef9] border-2 border-black p-2 rounded-lg shadow-[4px_4px_0_#000] transform rotate-[-2deg] hover:rotate-[0deg] transition-transform duration-300">
+            <img
+              src="/siddhant_mishra_image.jpg"
+              alt="Siddhant Mishra"
+              className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg border-2 border-black"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <p className="mt-2 text-sm text-gray-700">Siddhant Mishra</p>
+          </div>
         </div>
-      </main>
-    </div>
+
+        {/* 💬 Main intro text */}
+        <div className="relative bg-[#fffef9] border-2 border-black rounded-2xl shadow-[5px_5px_0_#000] px-6 py-8 sm:px-8 sm:py-10 handdrawn hover:shadow-[7px_7px_0_#000] transition-all duration-300">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight">
+            Hi, I’m <span className="underline decoration-4 decoration-yellow-400">Siddhant Mishra</span> 👋
+          </h1>
+
+          <p className="text-base sm:text-lg text-gray-700 max-w-xl mx-auto mb-6">
+            A Flutter and Web Developer passionate about building fast, minimal, and elegant apps —
+            with a touch of creativity ✨
+          </p>
+
+          {/* 📎 Buttons */}
+          <div className="flex flex-wrap justify-center gap-3 mt-2">
+            <a
+              href="#projects"
+              className="bg-yellow-300 border-2 border-black rounded-lg px-5 py-1.5 text-base font-semibold shadow-[3px_3px_0_#000] transition-all hover:translate-y-1 hover:shadow-[5px_5px_0_#000]"
+            >
+              🚀 View My Work
+            </a>
+            <a
+              href="#contact"
+              className="bg-white border-2 border-black rounded-lg px-5 py-1.5 text-base font-semibold shadow-[3px_3px_0_#000] transition-all hover:translate-y-1 hover:bg-gray-100 hover:shadow-[5px_5px_0_#000]"
+            >
+              📬 Contact Me
+            </a>
+          </div>
+        </div>
+
+        {/* ✏️ Subtle hand-drawn underline */}
+        <svg
+          className="absolute bottom-4 w-3/4 max-w-lg opacity-30"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 800 50"
+          fill="none"
+        >
+          <path
+            d="M5 25c80 20 200 20 300 0s240-20 350 0"
+            stroke="black"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="5 10"
+          />
+        </svg>
+      </section>
+
+      <div className="section-divider"></div>
+
+      {/* 🚀 Projects Section */}
+        <section
+        id="projects"
+        className="py-10 px-6 sm:px-12 md:px-24 lg:px-40 xl:px-56 bg-transparent relative"
+      >
+        <motion.h2
+          className="text-4xl font-extrabold mb-10 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="border-b-4 border-yellow-300 pb-1">My Projects</span>
+        </motion.h2>
+
+
+
+        {/* 🧭 Category Filter */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-1.5 rounded-lg border-2 border-black font-medium text-sm sm:text-base shadow-[3px_3px_0_#000] transition-all duration-300 ${
+                activeCategory === cat
+                  ? "bg-yellow-300 translate-y-1 shadow-[5px_5px_0_#000]"
+                  : "bg-white hover:translate-y-1 hover:shadow-[4px_4px_0_#000]"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* 🧱 Projects Grid */}
+        <motion.div
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center"
+        >
+          <AnimatePresence>
+            {filteredProjects.map((project, i) => (
+              <motion.div
+                key={project.title}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+              >
+                <Card
+                  title={project.title}
+                  
+                  description={project.desc}
+                  img={project.img}
+                  github={project.github}
+                  live={project.live}
+                  techStack={project.techStack}
+                   
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+        </section>
+      
+      <div className="section-divider"></div>
+      
+      {/*About Section*/}
+      <AboutSection />
+
+      <div className="section-divider"></div>
+      {/* {Contact Section} */}
+      <ContactSection/>
+
+      <Footer />
+    </main>
   );
 }

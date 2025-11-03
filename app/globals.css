@@ -1,26 +1,175 @@
 @import "tailwindcss";
+@import "@fontsource/patrick-hand";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ===========================
+ 🌿 BASE STYLES
+=========================== */
+@layer base {
+  html, body {
+    @apply bg-white text-black font-sans;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  html {
+    background: radial-gradient(circle at center, #fefefe 0%, #f3f3f3 100%);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    font-family: "Patrick Hand", cursive;
+    color: #111;
+    background-color: #fcfbf7;
+
+    /* ✨ Layered handmade paper texture */
+    background-image:
+      radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.95)),
+      url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+
+    background-blend-mode: overlay, overlay, normal;
+    background-size:
+      20px 20px,
+      80px 80px,
+      100% 100%,
+      400px 400px;
+    background-attachment: fixed;
+  }
+
+  /* Subtle paper fiber overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    opacity: 0.3; /* Adjust for more/less texture */
+    z-index: -1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ===========================
+ ✏️ COMPONENT STYLES
+=========================== */
+@layer components {
+  /* 🧾 Hand-cut paper card style */
+  .handdrawn {
+    background: #fffefc;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow:
+      5px 5px 0 #000,
+      inset 0 0 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s ease-in-out;
+    transform: rotate(calc(-0.3deg + 0.6deg * var(--random-tilt, 1)));
+  }
+
+  .handdrawn:hover {
+    box-shadow:
+      8px 8px 0 #000,
+      inset 0 0 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+  }
+
+  .handdrawn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.03) 0px,
+      rgba(0, 0, 0, 0.03) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+    pointer-events: none;
+  }
+
+  /* ✏️ Hand-drawn underline animation for navbar links */
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-link:hover {
+    transform: translateY(-2px);
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background-color: black;
+    border-radius: 2px;
+    transition: width 0.4s ease-in-out;
+    transform-origin: left;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Hanging paper tag style */
+  .tag-paper {
+    font-family: "Patrick Hand", cursive;
+    background: #fffef9;
+    box-shadow: 2px 2px 0 #000;
+    transition: all 0.25s ease;
+  }
+
+  .tag-paper:hover {
+    transform: translateY(3px) rotate(1deg);
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  .hanger {
+    transition: all 0.3s ease;
+    transform-origin: center top;
+  }
+
+  a.group:hover .hanger {
+    height: 8px;
+    background-color: #000;
+  }
+
+  a.group:hover .tag-paper {
+    transform: translateY(6px);
+  }
+
+ .section-divider {
+  border-top: 3px dotted #000;
+  width: 85%;
+  margin: 3rem auto;
+  opacity: 0.8;
+}
+
+
+}
+
+/* ===========================
+ 🎞️ ANIMATIONS
+=========================== */
+@layer utilities {
+  @keyframes wobble {
+    0% { transform: translateY(0) rotate(0deg); }
+    15% { transform: translateY(-2px) rotate(-2deg); }
+    30% { transform: translateY(2px) rotate(2deg); }
+    45% { transform: translateY(-1px) rotate(-1deg); }
+    60% { transform: translateY(1px) rotate(1deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+
+  .animate-wobble {
+    animation: wobble 0.6s ease-in-out;
+  }
+
+  /* Smooth scroll wobble trigger (optional JS support) */
+  .scroll-wobble {
+    transition: transform 0.15s ease-in-out;
+  }
 }
