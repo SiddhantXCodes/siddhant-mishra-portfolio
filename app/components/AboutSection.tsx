@@ -199,9 +199,17 @@ export default function AboutSection() {
           </ul>
         </div>
 
-        {/* 📄 Resume Button */}
+        {/* 📄 Resume Button (Direct Link Now) */}
         <div id="resume" className="flex justify-center pt-4">
-          <ResumeModal />
+          <a
+            href="https://1drv.ms/w/c/a0432b20eebe2f83/IQAw_OPCSqAiSJCF5e2q3P6UAeCXO9DM7nYQum5AluqHiJE?e=wIMx0t"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-yellow-300 border-2 border-black px-5 py-2 rounded-lg font-semibold shadow-[3px_3px_0_#000]
+            hover:translate-y-1 hover:shadow-[5px_5px_0_#000] transition-all flex items-center gap-2"
+          >
+            <Download size={18} /> View Resume
+          </a>
         </div>
       </motion.div>
     </section>
