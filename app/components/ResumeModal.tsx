@@ -42,7 +42,7 @@ export default function ResumeModal() {
                 <h3 className="text-lg font-bold">My Resume</h3>
                 <div className="flex gap-3">
                   <a
-                    href="/resume.pdf"
+                    href="https://1drv.ms/w/c/a0432b20eebe2f83/IQAw_OPCSqAiSJCF5e2q3P6UAeCXO9DM7nYQum5AluqHiJE?e=1p5Ecj"
                     download
                     className="text-sm font-semibold border-2 border-black px-2 py-1 rounded hover:bg-yellow-200"
                   >
